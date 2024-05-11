@@ -1,0 +1,26 @@
+public void mensajeAlert(String titulo, String msg){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage(msg);
+        alertDialog.setTitle(titulo);
+        alertDialog.setCancelable(true);
+        alertDialog.show();
+}
+
+public void mensajeAlert(String msg){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage(msg);
+        alertDialog.setCancelable(true);
+        alertDialog.show();
+}
+
+void mensajeToast(String mensaje){
+        Toast toast1 =  Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_LONG);
+        toast1.show();
+}
+
+
+
+
+
+
+

@@ -1,0 +1,100 @@
+--Lista de paises en JSON
+https://github.com/millan2993/countries/blob/master/json/countries.json
+
+--Lista de usuarios en JSON
+https://jsonplaceholder.typicode.com/users
+
+--Retrofit
+ implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+ implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+
+--Lombok
+ file ==> setting ==> plugin ==> Lombok
+
+ compileOnly 'org.projectlombok:lombok:1.18.12'
+ annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+--Permisos
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+-- Conexion a un servicio Rest
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class Connection {
+    public static final String URL = "https://jsonplaceholder.typicode.com/";
+    public static Retrofit retrofit = null;
+    public static Retrofit getConnecion(){
+        if (retrofit == null){
+            retrofit = new Retrofit.Builder().baseUrl(URL).addConverterFactory(GsonConverterFactory.create()).build();
+        }
+        return retrofit;
+    }
+}
+
+
+
+--Salto de un Activity a otro
+Intent intent = new Intent(MainActivity.this, CatagoloActivity.class);
+startActivity(intent);
+
+--Carga de un Combo
+String[] prod ={"Seleccione", "Lapicero", "Laptop", "PC"};
+ArrayAdapter<String> ada = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, prod);
+spnPro.setAdapter(ada);
+spnPro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                  if(position == 0){
+                      txtSel.setText("");
+                  }else{
+                      String sele = parent.getItemAtPosition(position).toString();
+                      txtSel.setText(position + " --> " + sele);
+                  }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+--Recuperar valores del Intent
+Bundle extras = getIntent().getExtras();
+
+--Mensajes en Alert
+public void mensajeAlert(String titulo, String msg){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage(msg);
+        alertDialog.setTitle(titulo);
+        alertDialog.setCancelable(true);
+        alertDialog.show();
+}
+
+--Mensajes en Alert
+public void mensajeAlert(String msg){
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setMessage(msg);
+        alertDialog.setCancelable(true);
+        alertDialog.show();
+}
+
+--Mensajes tipo Toast
+void mensajeToast(String mensaje){
+        Toast toast1 =  Toast.makeText(getApplicationContext(),mensaje, Toast.LENGTH_LONG);
+        toast1.show();
+}
+
+
+
+-ListView
+
+listView = findViewById(R.id.idListaUsuarios);
+adapatador = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, datos);
+listView.setAdapter(adapatador);
+
+
+
+
+
